@@ -24,7 +24,7 @@ jobs:
         run: |
           set -eux
           black --check .
-          codespell --ignore-words-list="aks" --quiet-level=2
+          codespell --ignore-words-list="aks" --quiet-level=0
       - name: Check YAML formatting
         run: |
           set -eux
@@ -33,4 +33,4 @@ jobs:
             | grep -v "./addons/metallb/metallb.yaml" \
             | grep -v "./addons/nfs/nfs.yaml" \
             | grep -v "templates")
-            
+         
