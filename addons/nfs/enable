@@ -2,7 +2,7 @@
 
 # This Addon does not use concept of submitted external values.yaml for parametrization. Addon rather offers abstraction and simplification.
 # Composing the values file gives more flexibility, however require client's knowledge of the undelying Addon code and Helm Chart in use.
-# If that knowledge is needed, it caould be more convenient to deploy Helm Chart directly.
+# If that knowledge is needed, it could be more convenient to deploy Helm Chart directly.
 
 set -e
 
