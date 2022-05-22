@@ -15,5 +15,6 @@ echo "Disabling NFS Server Provisioner"
 
 $HELM delete nfs-server-provisioner -n $NAMESPACE
 $KUBECTL delete $KUBECTL_DELETE_ARGS namespace "$NAMESPACE" > /dev/null 2>&1 || true
+$KUBECTL delete -f $CURRENT_DIR/nfs.yaml 
 
 echo "NFS Server Provisioner is disabled"
