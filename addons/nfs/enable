@@ -74,6 +74,7 @@ else
       --namespace $NAMESPACE --set persistence.enabled=true --set persistence.storageClass='-' --set nodeSelector.kubernetes.io/hostname=$NODE
 fi
 
+echo ""
 echo "NFS Server Provisioner is installed"
 echo ""
 echo "WARNING: Install \"nfs-common\" package on all MicroK8S nodes to allow Pods with NFS mounts to start: sudo apt update && sudo apt install -y nfs-common"
