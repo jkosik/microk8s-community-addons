@@ -33,4 +33,3 @@ jobs:
             | grep -v "./addons/metallb/metallb.yaml" \
             | grep -v "./addons/nfs/nfs.yaml" \
             | grep -v "templates")
-         
