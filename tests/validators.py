@@ -113,7 +113,7 @@ def validate_storage():
 
 def validate_storage_nfs():
     """
-    Validate NFS Storage by creating multi-Pod deployment mounting same PVC
+    Validate NFS Storage by creating two Pods mounting the same PVC. (optimal test would be on multinode-cluster)
     """
     wait_for_pod_state(
         "", "nfs-server-provisioner", "running", label="app=nfs-server-provisioner"
@@ -141,7 +141,7 @@ def validate_storage_nfs():
             if file == "dates1":
                 found1 = True
             if file == "dates2":
-                found1 = True
+                found2 = True
     assert found1
     assert found2
     assert "pvc-nfs" in output
