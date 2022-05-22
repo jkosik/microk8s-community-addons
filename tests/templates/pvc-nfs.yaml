@@ -1,3 +1,4 @@
+# PV for NFS Provisioner Pod's PVC, i.e. underlying infra.
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -14,6 +15,7 @@ spec:
     namespace: nfs-server-provisioner
     name: data-nfs-server-provisioner-0
 
+# PVC for the customer
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
