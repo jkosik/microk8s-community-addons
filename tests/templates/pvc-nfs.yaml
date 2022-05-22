@@ -17,7 +17,9 @@ spec:
 kind: Pod
 apiVersion: v1
 metadata:
-  name: busybox-pvc-nfs
+  name: busybox-pvc-nfs1
+  labels:
+    app: busybox-pvc-nfs
 spec:
   containers:
     - name: busybox-pvc-nfs1
@@ -37,7 +39,9 @@ spec:
 kind: Pod
 apiVersion: v1
 metadata:
-  name: busybox-pvc-nfs
+  name: busybox-pvc-nfs2
+  labels:
+    app: busybox-pvc-nfs
 spec:
   containers:
     - name: busybox-pvc-nfs2
