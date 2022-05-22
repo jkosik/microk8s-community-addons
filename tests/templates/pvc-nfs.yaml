@@ -6,7 +6,7 @@ metadata:
   name: data-nfs-server-provisioner-0
 spec:
   capacity:
-    storage: 1Gi
+    storage: 5Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
@@ -23,6 +23,7 @@ metadata:
   name: pvc-nfs
   labels:
     vol: pvc-nfs
+  namespace: default
 spec:
   storageClassName: "nfs"
   accessModes:
@@ -38,6 +39,7 @@ metadata:
   name: busybox-pvc-nfs1
   labels:
     app: busybox-pvc-nfs
+  namespace: default
 spec:
   containers:
     - name: busybox-pvc-nfs1
@@ -59,6 +61,7 @@ metadata:
   name: busybox-pvc-nfs2
   labels:
     app: busybox-pvc-nfs
+  namespace: default
 spec:
   containers:
     - name: busybox-pvc-nfs2
