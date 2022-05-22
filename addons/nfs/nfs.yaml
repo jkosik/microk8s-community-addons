@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -10,5 +11,5 @@ spec:
   hostPath:
     path: {{hostpath}}
   claimRef:
-    namespace: default
+    namespace: nfs-server-provisioner
     name: {{claimref_name}}
