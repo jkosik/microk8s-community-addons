@@ -8,7 +8,7 @@ from validators import (
     validate_dns_dashboard,
     validate_dashboard_ingress,
     validate_storage,
-    #validate_storage_nfs,
+    validate_storage_nfs,
     validate_ingress,
     validate_ambassador,
     validate_gpu,
@@ -113,20 +113,20 @@ class TestAddons(object):
         microk8s_disable("dns")
         """
 
-    # @pytest.mark.skipif(
-    #     platform.machine() != "x86_64",
-    #     reason="NFS tests are only relevant in x86 architectures",
-    # )
-    # def test_storage_nfs(self):
-    #     """
-    #     Sets up and validates NFS Server Provisioner.
-    #     """
-    #     print("Enabling NFS")
-    #     microk8s_enable("nfs")
-    #     print("Validating NFS")
-    #     validate_storage_nfs()
-    #     print("Disabling NFS")
-    #     microk8s_disable("nfs")
+    @pytest.mark.skipif(
+        platform.machine() != "x86_64",
+        reason="NFS tests are only relevant in x86 architectures",
+    )
+    def test_storage_nfs(self):
+        """
+        Sets up and validates NFS Server Provisioner.
+        """
+        print("Enabling NFS")
+        microk8s_enable("nfs")
+        print("Validating NFS")
+        validate_storage_nfs()
+        print("Disabling NFS")
+        microk8s_disable("nfs")
 
     @pytest.mark.skipif(
         os.environ.get("UNDER_TIME_PRESSURE") == "True",
