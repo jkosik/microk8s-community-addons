@@ -71,7 +71,7 @@ if [ -z "$NODE_NAME" ]; then
 else
    $HELM upgrade -i nfs-server-provisioner nfs-ganesha-server-and-external-provisioner/nfs-server-provisioner \
       --version $CHART_VERSION \
-      --namespace $NAMESPACE --set persistence.enabled=true --set persistence.storageClass='-' --set nodeSelector.kubernetes\.io/hostname=$NODE_NAME
+      --namespace $NAMESPACE --set persistence.enabled=true --set persistence.storageClass='-' --set nodeSelector."kubernetes\.io/hostname"=$NODE_NAME
 fi
 
 echo ""
