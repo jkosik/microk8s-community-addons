@@ -29,7 +29,6 @@ spec:
       volumeMounts:
         - name: volume
           mountPath: /mount
-  restartPolicy: "Never"
   volumes:
     - name: volume
       persistentVolumeClaim:
@@ -51,7 +50,6 @@ spec:
       volumeMounts:
         - name: volume
           mountPath: /mount
-  restartPolicy: "Never"
   volumes:
     - name: volume
       persistentVolumeClaim:
