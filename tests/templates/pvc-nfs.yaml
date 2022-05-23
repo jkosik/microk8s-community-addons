@@ -27,7 +27,7 @@ metadata:
 spec:
   storageClassName: "nfs"
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
@@ -44,8 +44,7 @@ spec:
   containers:
     - name: busybox-pvc-nfs1
       image: busybox
-      command:
-        ["/bin/sh", "-c", "while true; do date >> /mount/dates1; sleep 2; done"]
+      command: ["/bin/sh", "-c", "while true; do date >> /mount/dates1; sleep 2; done"]
       volumeMounts:
         - name: volume
           mountPath: /mount
@@ -66,8 +65,7 @@ spec:
   containers:
     - name: busybox-pvc-nfs2
       image: busybox
-      command:
-        ["/bin/sh", "-c", "while true; do date >> /mount/dates2; sleep 2; done"]
+      command: ["/bin/sh", "-c", "while true; do date >> /mount/dates2; sleep 2; done"]
       volumeMounts:
         - name: volume
           mountPath: /mount
