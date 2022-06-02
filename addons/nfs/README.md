@@ -1,8 +1,8 @@
 # Microk8s NFS Addon
-Addon deploys [nfs-server-provisioner](https://artifacthub.io/packages/helm/kvaps/nfs-server-provisioner) Helm Chart
-allowing ReadWriteMany storage access mode.   
+Addon deploys [nfs-server-provisioner](https://artifacthub.io/packages/helm/kvaps/nfs-server-provisioner) Helm Chart.
   
-The most of the benefits are manifested on multi-node Microk8s clusters. I.e. Pods running on different Microk8s nodes can access the storage in a RW manner.
+The most of the benefits are manifested on multi-node Microk8s clusters. I.e. Pods running on different Microk8s nodes can share the storage in a RW manner.  
+**WARNING: Underlying hostPath volume served by the NFS server is mounted to a single Node at the time, not ensuring HA on storage level.**
   
   
 # Usage
@@ -23,7 +23,6 @@ kubectl get node -o yaml | grep 'kubernetes.io/hostname'
 
 ## Testing NFS
 ```
-/data/manifests-samples                                                                                                          ✘ INT 57s ⎈ microk8s-multipass 20:17:45
 ❯ cat busybox-daemonset-nfs.yaml 
 ---
 kind: PersistentVolumeClaim
