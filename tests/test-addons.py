@@ -8,6 +8,7 @@ from validators import (
     validate_dns_dashboard,
     validate_dashboard_ingress,
     validate_storage,
+    validate_storage_nfs,
     validate_ingress,
     validate_ambassador,
     validate_gpu,
@@ -101,6 +102,7 @@ class TestAddons(object):
         validate_dashboard_ingress()
         print("Disabling dashboard-ingress")
         microk8s_disable("dashboard-ingress")
+
         print("Disabling metrics-server")
         microk8s_disable("metrics-server")
         print("Disabling dashboard")
@@ -111,6 +113,25 @@ class TestAddons(object):
         print("Disabling DNS")
         microk8s_disable("dns")
         """
+
+    @pytest.mark.skipif(
+        os.environ.get("STRICT") == "yes",
+        reason="Skipping nfs tests in strict confinement as they are expected to fail",
+    )
+    @pytest.mark.skipif(
+        platform.machine() != "x86_64",
+        reason="NFS tests are only relevant in x86 architectures",
+    )
+    def test_storage_nfs(self):
+        """
+        Sets up and validates NFS Server Provisioner.
+        """
+        print("Enabling NFS")
+        microk8s_enable("nfs")
+        print("Validating NFS")
+        validate_storage_nfs()
+        print("Disabling NFS")
+        microk8s_disable("nfs")
 
     @pytest.mark.skipif(
         os.environ.get("UNDER_TIME_PRESSURE") == "True",
@@ -192,6 +213,10 @@ class TestAddons(object):
         microk8s_disable("fluentd")
 
     @pytest.mark.skipif(
+        os.environ.get("STRICT") == "yes",
+        reason="Skipping cilium tests in strict confinement as they are expected to fail",
+    )
+    @pytest.mark.skipif(
         platform.machine() != "x86_64",
         reason="Cilium tests are only relevant in x86 architectures",
     )
@@ -256,6 +281,10 @@ class TestAddons(object):
         print("Disabling Ambassador")
         microk8s_disable("ambassador")
 
+    @pytest.mark.skipif(
+        os.environ.get("STRICT") == "yes",
+        reason="Skipping multus tests in strict confinement as they are expected to fail",
+    )
     @pytest.mark.skipif(
         platform.machine() != "x86_64",
         reason="Multus tests are only relevant in x86 architectures",
@@ -382,6 +411,10 @@ class TestAddons(object):
             print("Nothing to do, since iscsid is not available")
             return
 
+    @pytest.mark.skipif(
+        os.environ.get("STRICT") == "yes",
+        reason="Skipping kata tests in strict confinement as they are expected to fail",
+    )
     @pytest.mark.skipif(
         platform.machine() != "x86_64",
         reason="Kata tests are only relevant in x86 architectures",
